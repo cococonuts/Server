@@ -23,7 +23,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define APP_NAME	"live"
+#define APP_NAME	"coconuts"
 
 struct RTMP_Message {
 	uint8_t type;
