@@ -52,6 +52,7 @@ Client *publisher = NULL;
 int listen_fd;
 std::vector<pollfd> poll_table;
 std::vector<Client *> clients;
+std::vector<std::string> log;
 
 int set_nonblock(int fd, bool enabled)
 {
@@ -790,6 +791,8 @@ try {
 	if (listen_fd < 0)
 		return 1;
 
+        log.add("Sever start");
+
 	sockaddr_in sin;
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(PORT);
@@ -812,6 +815,8 @@ try {
 	for (;;) {
 		do_poll();
 	}
+
+        log.add("Server exit");
 	return 0;
 } catch (const std::runtime_error &e) {
 	fprintf(stderr, "ERROR: %s\n", e.what());
